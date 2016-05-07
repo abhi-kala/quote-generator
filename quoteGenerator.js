@@ -1,5 +1,6 @@
 
-
+var quote = "";
+var author = "";
 function getQuote(){
   $.ajax({
     url: "https://andruxnet-random-famous-quotes.p.mashape.com/?cat=movies", // The URL to the API. You can get this in the API page of the API you intend to consume
@@ -21,10 +22,15 @@ function getQuote(){
 };
 
 $(document).ready(function() {
-  // getQuote();
-  $(".button").on("click", function() {
+  getQuote();
+  $(".quoteButton").on("click", function() {
     getQuote();
     $(".quote").html(quote);
     $(".author").html(author);
   })
+
+  $(".twitter-share-button").on("click", function (){
+     $('.twitter-share-button').attr('href', 'https://twitter.com/intent/tweet?text='+encodeURIComponent('"'+quote+'"'+author) );
+
+  });
 });
